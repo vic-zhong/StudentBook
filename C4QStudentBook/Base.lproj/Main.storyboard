@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -77,6 +77,62 @@
             </objects>
             <point key="canvasLocation" x="2644" y="131"/>
         </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="RaX-bR-WzW">
+            <objects>
+                <viewController id="UaF-BV-h79" customClass="FilterViewController" customModule="C4QStudentBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zKq-MA-Yzr"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Me-75-Ola"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gry-RI-5uh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4c-SU-aHL">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glV-vK-Zs6">
+                                <state key="normal" title="First Name"/>
+                                <connections>
+                                    <action selector="firstNameButtonTapped:" destination="UaF-BV-h79" eventType="touchUpInside" id="ctg-xO-r6F"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TtM-ls-a7V">
+                                <state key="normal" title="Last Name"/>
+                                <connections>
+                                    <action selector="lastNameButtonTapped:" destination="UaF-BV-h79" eventType="touchUpInside" id="gHo-0P-VYz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dne-gh-dE0">
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="UaF-BV-h79" eventType="touchUpInside" id="07l-hk-btT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Dne-gh-dE0" firstAttribute="top" secondItem="zKq-MA-Yzr" secondAttribute="bottom" constant="10" id="0ZO-nC-VO8"/>
+                            <constraint firstItem="TtM-ls-a7V" firstAttribute="top" secondItem="glV-vK-Zs6" secondAttribute="bottom" constant="10" id="2Jh-z7-890"/>
+                            <constraint firstItem="Dne-gh-dE0" firstAttribute="leading" secondItem="gry-RI-5uh" secondAttribute="leadingMargin" constant="10" id="6p9-sU-JC9"/>
+                            <constraint firstItem="TtM-ls-a7V" firstAttribute="centerX" secondItem="gry-RI-5uh" secondAttribute="centerX" id="C6d-sL-OzJ"/>
+                            <constraint firstItem="glV-vK-Zs6" firstAttribute="centerX" secondItem="gry-RI-5uh" secondAttribute="centerX" id="IUO-Uu-b7h"/>
+                            <constraint firstItem="a4c-SU-aHL" firstAttribute="centerX" secondItem="gry-RI-5uh" secondAttribute="centerX" id="SV6-mI-eWM"/>
+                            <constraint firstItem="a4c-SU-aHL" firstAttribute="top" secondItem="zKq-MA-Yzr" secondAttribute="bottom" constant="57" id="d1z-I2-TdY"/>
+                            <constraint firstItem="glV-vK-Zs6" firstAttribute="top" secondItem="a4c-SU-aHL" secondAttribute="bottom" constant="10" id="mLP-53-Mkd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="filterLabel" destination="a4c-SU-aHL" id="aBP-4y-wly"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tfq-W1-diq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4225" y="-537"/>
+        </scene>
         <!--Students Table View Controller-->
         <scene sceneID="Urq-pl-He7">
             <objects>
@@ -90,7 +146,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="101"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R8g-pp-dSx" id="H1E-Lh-BB4">
-                                    <frame key="frameInset" width="375" height="100"/>
+                                    <frame key="frameInset" width="375" height="101"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qLh-K5-OcV">
@@ -136,9 +192,9 @@
                     <navigationItem key="navigationItem" id="qUA-VZ-Ja1">
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title=" " id="MoE-2q-oJN"/>
-                        <barButtonItem key="leftBarButtonItem" title="Profile" id="d4Z-dR-Wa0">
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="d4Z-dR-Wa0">
                             <connections>
-                                <action selector="handleProfileButton:" destination="f67-Cu-CZY" id="kxn-ge-5ll"/>
+                                <action selector="handleFilterButton:" destination="f67-Cu-CZY" id="0PW-lY-sb0"/>
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="FV2-LD-ClB">
@@ -183,6 +239,7 @@
                         <outlet property="titleLabel" destination="2sI-lH-LEd" id="U0U-QX-pBf"/>
                         <outlet property="titleView" destination="b8t-q8-8bf" id="BdN-mR-Qej"/>
                         <segue destination="Bu9-OW-k4S" kind="show" identifier="detailVCSegueID" id="Q0l-xa-3o5"/>
+                        <segue destination="UaF-BV-h79" kind="presentation" identifier="filterVCSegueID" modalTransitionStyle="flipHorizontal" id="yBd-2E-wBY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N4o-jD-S7G" userLabel="First Responder" sceneMemberID="firstResponder"/>

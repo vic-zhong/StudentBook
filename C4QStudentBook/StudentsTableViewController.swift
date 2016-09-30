@@ -8,10 +8,10 @@
 
 import UIKit
 
-class StudentsTableViewController: UITableViewController {
+class StudentsTableViewController: UITableViewController, FilterStudentDelegate {
 
     var currentUser: Student!
-    var students = [Student]()
+    var data: Data?
 
     @IBOutlet weak var titleImageView: UIImageView!
     
@@ -21,64 +21,19 @@ class StudentsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        students = Data.fetchAllStudentsExcept(currentUser: currentUser)
         setupNavBar()
+        data = Data(studentsDict: ac32_students, user: currentUser)
     }
-
-    func sortStudentsBy(condition: String, ascending: Bool) {
-        students.sort { (currentStudent, nextStudent) -> Bool in
-            if ascending {
-                switch condition {
-                case "firstName":
-                    return currentStudent.personalInfo.firstName < nextStudent.personalInfo.firstName
-                case "lastName":
-                    return currentStudent.personalInfo.lastName < nextStudent.personalInfo.lastName
-                case "email":
-                    return currentStudent.personalInfo.email < nextStudent.personalInfo.email
-                default:
-                    return currentStudent.id < nextStudent.id
-                }
-            } else {
-                switch condition {
-                case "firstName":
-                    return currentStudent.personalInfo.firstName > nextStudent.personalInfo.firstName
-                case "lastName":
-                    return currentStudent.personalInfo.lastName > nextStudent.personalInfo.lastName
-                case "email":
-                    return currentStudent.personalInfo.email > nextStudent.personalInfo.email
-                default:
-                    return currentStudent.id > nextStudent.id
-                }
-            }
-        }
-        tableView.reloadData()
-    }
-
-//    func sortStudentsBy(condition: String, ascending: Bool) {
-//        students.sort { (currentStudent, nextStudent) -> Bool in
-//         //   if ascending {
-//                switch condition {
-//                case "firstName":
-//                    return ascending ? (currentStudent.personalInfo.firstName < nextStudent.personalInfo.firstName)
-//                case "lastName":
-//                    return currentStudent.personalInfo.lastName < nextStudent.personalInfo.lastName
-//                case "email":
-//                    return currentStudent.personalInfo.email < nextStudent.personalInfo.email
-//                default:
-//                    return currentStudent.id < nextStudent.id
-//                }
-////            }
-//        }
-//        tableView.reloadData()
-//    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+        tableView.reloadData()
+    }
 
-//        students.sort {(a, b) in
-//            return a.personalInfo.lastName + a.personalInfo.firstName < b.personalInfo.firstName
-//        }
+    func filterStudentBy(condition: String) {
+        guard let data = data else { return }
+        data.sortStudentsBy(condition: condition, ascending: true)
     }
 
     func setupNavBar() {
@@ -91,25 +46,19 @@ class StudentsTableViewController: UITableViewController {
         titleView.addGestureRecognizer(tapGesture)
     }
 
+    // MARK: - Button Actions
+
     func handleTitleViewTap() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         detailVC.student = currentUser
-//        let navController = UINavigationController(rootViewController: detailVC)
-//        let leftButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(handleLeftBarButton))
-//        navController.navigationItem.leftBarButtonItem = leftButton
-//        navigationController?.present(detailVC, animated: true, completion: nil)
         present(detailVC, animated: true, completion: nil)
-//        performSegue(withIdentifier: "detailVCSegueID", sender: currentUser)
     }
 
-    func handleLeftBarButton() {
-
+    @IBAction func handleFilterButton(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "filterVCSegueID", sender: nil)
     }
 
-    @IBAction func handleProfileButton(_ sender: UIBarButtonItem) {
-
-    }
 
     @IBAction func logoutButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -122,18 +71,21 @@ class StudentsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let students = data?.students else { return 0 }
         return students.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "studentCellID", for: indexPath) as! StudentTableViewCell
         cell.selectionStyle = .none
+        guard let students = data?.students else { return UITableViewCell() }
         let studentInfo = students[indexPath.row].personalInfo
         cell.studentInfo = studentInfo
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let students = data?.students else { return  }
         let student = students[indexPath.row]
         performSegue(withIdentifier: "detailVCSegueID", sender: student)
     }
@@ -144,6 +96,9 @@ class StudentsTableViewController: UITableViewController {
         if segue.identifier == "detailVCSegueID" {
             let detailVC = segue.destination as? DetailViewController
             detailVC?.student = sender as? Student
+        } else if segue.identifier == "filterVCSegueID" {
+            let filterVC = segue.destination as? FilterViewController
+            filterVC?.delegate = self
         }
     }
 

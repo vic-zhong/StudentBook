@@ -7,22 +7,57 @@
 //
 
 import Foundation
+import UIKit
 
 class Data {
-    class func fetchAllStudentsExcept(currentUser: Student?) -> [Student] {
-        var students = [Student]()
-        for studentDict in ac32_students {
+
+    var students: [Student]
+    let currentUser: Student?
+
+    init(studentsDict: [[String: Any]], user: Student?) {
+        var studentArr = [Student]()
+        for studentDict in studentsDict {
             guard let bioInfo = studentDict["info"] as? [String: Any], let id = studentDict["studentID"] as? Int, let githubAcc = studentDict["github"] as? String, let fact = studentDict["funFact"] as? String, let linkedin = studentDict["linkedin"] as? String  else { continue }
             let student = Student(info: bioInfo, studentID: id, linkedinAcc: linkedin, githubAcc: githubAcc, fact: fact)
-            if currentUser == nil {
-                students.append(student)
+            if user == nil {
+                studentArr.append(student)
             }
-            guard let currentUser = currentUser else { continue }
-            if student.personalInfo.email != currentUser.personalInfo.email {
-                students.append(student)
+            guard let current = user else { continue }
+            if student.personalInfo.email != current.personalInfo.email {
+                studentArr.append(student)
             }
         }
-        return students
+        currentUser = user
+        students = studentArr
+    }
+
+    func sortStudentsBy(condition: String, ascending: Bool) {
+        students = students.sorted { (currentStudent, nextStudent) -> Bool in
+            if ascending {
+                switch condition {
+                case "firstName":
+                    return currentStudent.personalInfo.firstName < nextStudent.personalInfo.firstName
+                case "lastName":
+                    return currentStudent.personalInfo.lastName < nextStudent.personalInfo.lastName
+                case "email":
+                    return currentStudent.personalInfo.email < nextStudent.personalInfo.email
+                default:
+                    return currentStudent.id < nextStudent.id
+                }
+            } else {
+                switch condition {
+                case "firstName":
+                    return currentStudent.personalInfo.firstName > nextStudent.personalInfo.firstName
+                case "lastName":
+                    return currentStudent.personalInfo.lastName > nextStudent.personalInfo.lastName
+                case "email":
+                    return currentStudent.personalInfo.email > nextStudent.personalInfo.email
+                default:
+                    return currentStudent.id > nextStudent.id
+                }
+            }
+
+        }
     }
 }
 

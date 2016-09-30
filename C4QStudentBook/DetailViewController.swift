@@ -24,11 +24,9 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         profileImageView.layer.cornerRadius = 100
         profileImageView.layer.masksToBounds = true
-        
         if self.navigationController != nil {
             closeButton.isHidden = true
         }
-        
         setupData()
     }
 

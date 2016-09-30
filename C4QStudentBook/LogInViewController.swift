@@ -16,13 +16,14 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
 
     var students = [Student]()
+    var data: Data?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.layer.cornerRadius = 60
         imageView.layer.masksToBounds = true
         logInButton.addTarget(self, action: #selector(handleLogInButton), for: .touchUpInside)
-        students = Data.fetchAllStudentsExcept(currentUser: nil)
+        data = Data(studentsDict: ac32_students, user: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +36,7 @@ class LogInViewController: UIViewController {
             displayAlertWith(message: "Please enter both email and password field")
             return
         }
-
+        guard let students = data?.students else { return }
         guard let student = students.filter({ $0.personalInfo.email.lowercased() == emailEntered.lowercased() }).first else {
             displayAlertWith(message: "Invalid Entry")
             return
@@ -59,7 +60,6 @@ class LogInViewController: UIViewController {
         if segue.identifier == "studentsListSegueID" {
             let navController = segue.destination as! UINavigationController
             let studentsTVC = navController.topViewController as! StudentsTableViewController
-//            let studentsTVC = segue.destination as! StudentsTableViewController
             studentsTVC.currentUser = sender as? Student
         }
     }
