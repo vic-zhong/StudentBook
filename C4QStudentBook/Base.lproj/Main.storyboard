@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -90,7 +90,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="101"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R8g-pp-dSx" id="H1E-Lh-BB4">
-                                    <frame key="frameInset" width="375" height="101"/>
+                                    <frame key="frameInset" width="375" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qLh-K5-OcV">
@@ -242,6 +242,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3R-4R-aUj">
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="closeButtonTapped:" destination="Bu9-OW-k4S" eventType="touchUpInside" id="vQ7-2H-2R8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -253,6 +259,7 @@
                             <constraint firstItem="7o7-Px-on4" firstAttribute="leading" secondItem="QOk-Pg-JxS" secondAttribute="trailing" constant="40" id="GRK-vI-VBR"/>
                             <constraint firstItem="RHh-dc-p0T" firstAttribute="leading" secondItem="oOT-7x-R1c" secondAttribute="leadingMargin" id="MrR-no-l85"/>
                             <constraint firstItem="N68-Dh-v9E" firstAttribute="leading" secondItem="oOT-7x-R1c" secondAttribute="leadingMargin" id="QwS-1r-qs9"/>
+                            <constraint firstItem="Z3R-4R-aUj" firstAttribute="top" secondItem="12d-K8-kKW" secondAttribute="bottom" constant="20" id="VD4-12-QzN"/>
                             <constraint firstItem="jxd-62-nhV" firstAttribute="leading" secondItem="oOT-7x-R1c" secondAttribute="leadingMargin" id="VvO-KA-b63"/>
                             <constraint firstItem="RHh-dc-p0T" firstAttribute="trailing" secondItem="oOT-7x-R1c" secondAttribute="trailingMargin" id="eAs-om-z6h"/>
                             <constraint firstItem="jxd-62-nhV" firstAttribute="top" secondItem="7o7-Px-on4" secondAttribute="bottom" constant="10" id="eRJ-zm-SAq"/>
@@ -261,9 +268,11 @@
                             <constraint firstItem="N68-Dh-v9E" firstAttribute="trailing" secondItem="oOT-7x-R1c" secondAttribute="trailingMargin" id="hWh-HT-JoN"/>
                             <constraint firstItem="QOk-Pg-JxS" firstAttribute="centerX" secondItem="oOT-7x-R1c" secondAttribute="centerX" constant="-32.5" id="jCM-hI-FbG"/>
                             <constraint firstItem="jxd-62-nhV" firstAttribute="trailing" secondItem="oOT-7x-R1c" secondAttribute="trailingMargin" id="qLf-Ah-thO"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Z3R-4R-aUj" secondAttribute="leading" id="ubH-Q2-bo2"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="Z3R-4R-aUj" id="09h-cm-Wkj"/>
                         <outlet property="emailLabel" destination="jxd-62-nhV" id="Vhe-gd-IjE"/>
                         <outlet property="funFactTextView" destination="N68-Dh-v9E" id="4w2-mt-vUg"/>
                         <outlet property="profileImageView" destination="mCP-u8-dVa" id="fqL-uq-zQs"/>
@@ -291,97 +300,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlA-gs-1qu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3488.8000000000002" y="133.5832083958021"/>
-        </scene>
-        <!--Self Detail View Controller-->
-        <scene sceneID="2GD-Xi-4Il">
-            <objects>
-                <viewController storyboardIdentifier="SelfDetailViewController" id="tIY-zE-AT2" customClass="SelfDetailViewController" customModule="C4QStudentBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ycd-Op-WHF"/>
-                        <viewControllerLayoutGuide type="bottom" id="li4-qR-FdS"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="uLZ-gF-yIl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aTx-9q-Xdq">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="edL-lY-gXm"/>
-                                    <constraint firstAttribute="height" constant="200" id="sfs-LC-ckZ"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfw-aE-CNe">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="91z-Gk-ZSm"/>
-                                    <constraint firstAttribute="height" constant="25" id="pvS-Tb-59B"/>
-                                </constraints>
-                                <state key="normal" title="Linkedin" image="linkedin_icon"/>
-                                <connections>
-                                    <action selector="handleLinkedinButtonWithSender:" destination="tIY-zE-AT2" eventType="touchUpInside" id="W9g-RG-eSS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cB-Ia-1fA">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="MOn-5f-D9M"/>
-                                    <constraint firstAttribute="height" constant="25" id="cI3-gl-W3j"/>
-                                </constraints>
-                                <state key="normal" title="GitHub" image="github_icon"/>
-                                <connections>
-                                    <action selector="handleGitHubButtonWithSender:" destination="tIY-zE-AT2" eventType="touchUpInside" id="exX-Y2-ss0"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CW-Kf-brf">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrc-28-9qA">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Fun Fact" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5z1-lZ-E2a">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7a-S6-Pzb">
-                                <state key="normal" title="Close"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="5z1-lZ-E2a" firstAttribute="leading" secondItem="uLZ-gF-yIl" secondAttribute="leadingMargin" id="6ej-2T-5kF"/>
-                            <constraint firstItem="sfw-aE-CNe" firstAttribute="top" secondItem="aTx-9q-Xdq" secondAttribute="bottom" constant="20" id="6iy-27-QSc"/>
-                            <constraint firstItem="aTx-9q-Xdq" firstAttribute="centerX" secondItem="uLZ-gF-yIl" secondAttribute="centerX" id="7wm-nW-br3"/>
-                            <constraint firstItem="8cB-Ia-1fA" firstAttribute="top" secondItem="sfw-aE-CNe" secondAttribute="top" id="8kC-nu-6p8"/>
-                            <constraint firstItem="sfw-aE-CNe" firstAttribute="centerX" secondItem="uLZ-gF-yIl" secondAttribute="centerX" constant="-32.5" id="AeH-HJ-gwR"/>
-                            <constraint firstItem="1CW-Kf-brf" firstAttribute="trailing" secondItem="uLZ-gF-yIl" secondAttribute="trailingMargin" id="BuD-Bd-00F"/>
-                            <constraint firstItem="lrc-28-9qA" firstAttribute="leading" secondItem="uLZ-gF-yIl" secondAttribute="leadingMargin" id="CMH-yf-u3h"/>
-                            <constraint firstItem="lrc-28-9qA" firstAttribute="trailing" secondItem="uLZ-gF-yIl" secondAttribute="trailingMargin" id="FDb-qv-rqF"/>
-                            <constraint firstItem="5z1-lZ-E2a" firstAttribute="top" secondItem="1CW-Kf-brf" secondAttribute="bottom" constant="10" id="MNn-IS-5Uz"/>
-                            <constraint firstItem="1CW-Kf-brf" firstAttribute="leading" secondItem="uLZ-gF-yIl" secondAttribute="leadingMargin" id="arg-39-vSt"/>
-                            <constraint firstItem="aTx-9q-Xdq" firstAttribute="top" secondItem="ycd-Op-WHF" secondAttribute="bottom" constant="50" id="emz-0B-cFQ"/>
-                            <constraint firstItem="1CW-Kf-brf" firstAttribute="top" secondItem="lrc-28-9qA" secondAttribute="bottom" constant="10" id="hrT-Bs-H2v"/>
-                            <constraint firstItem="li4-qR-FdS" firstAttribute="top" secondItem="5z1-lZ-E2a" secondAttribute="bottom" constant="10" id="odd-hQ-nKU"/>
-                            <constraint firstItem="D7a-S6-Pzb" firstAttribute="top" secondItem="ycd-Op-WHF" secondAttribute="bottom" id="pZo-IX-kED"/>
-                            <constraint firstItem="D7a-S6-Pzb" firstAttribute="leading" secondItem="uLZ-gF-yIl" secondAttribute="leadingMargin" constant="4" id="s8m-kQ-4rs"/>
-                            <constraint firstItem="5z1-lZ-E2a" firstAttribute="trailing" secondItem="uLZ-gF-yIl" secondAttribute="trailingMargin" id="tSG-ES-rr4"/>
-                            <constraint firstItem="8cB-Ia-1fA" firstAttribute="leading" secondItem="sfw-aE-CNe" secondAttribute="trailing" constant="40" id="uq2-Ek-rBC"/>
-                            <constraint firstItem="lrc-28-9qA" firstAttribute="top" secondItem="8cB-Ia-1fA" secondAttribute="bottom" constant="10" id="uvL-5w-oMx"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="closeButton" destination="D7a-S6-Pzb" id="3yL-Xa-WqU"/>
-                        <outlet property="emailLabel" destination="lrc-28-9qA" id="xc4-PE-drf"/>
-                        <outlet property="funFactTextView" destination="5z1-lZ-E2a" id="b5D-43-2ZJ"/>
-                        <outlet property="profileImageView" destination="aTx-9q-Xdq" id="YtN-J5-MZ4"/>
-                        <outlet property="studentIDLabel" destination="1CW-Kf-brf" id="ys5-I3-Peb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-zr-ZV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4252" y="-578"/>
         </scene>
     </scenes>
     <resources>
