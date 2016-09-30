@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var studentIDLabel: UILabel!
     @IBOutlet weak var funFactTextView: UITextView!
+    @IBOutlet weak var closeButton: UIButton!
 
     var linkedURLString: String?
     var githubURLString: String?
@@ -23,6 +24,11 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         profileImageView.layer.cornerRadius = 100
         profileImageView.layer.masksToBounds = true
+        
+        if self.navigationController != nil {
+            closeButton.isHidden = true
+        }
+        
         setupData()
     }
 
@@ -49,4 +55,7 @@ class DetailViewController: UIViewController {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
+    @IBAction func closeButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
 }

@@ -93,7 +93,7 @@ class StudentsTableViewController: UITableViewController {
 
     func handleTitleViewTap() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let detailVC = sb.instantiateViewController(withIdentifier: "SelfDetailViewController") as! DetailViewController
+        let detailVC = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         detailVC.student = currentUser
 //        let navController = UINavigationController(rootViewController: detailVC)
 //        let leftButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(handleLeftBarButton))
