@@ -28,7 +28,8 @@ class LogInViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
+        emailTextField.text = nil
+        passwordTextField.text = nil
     }
 
     func handleLogInButton() {

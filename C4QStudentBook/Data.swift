@@ -18,6 +18,7 @@ class Data {
         var studentArr = [Student]()
         for studentDict in studentsDict {
             guard let bioInfo = studentDict["info"] as? [String: Any], let id = studentDict["studentID"] as? Int, let githubAcc = studentDict["github"] as? String, let fact = studentDict["funFact"] as? String, let linkedin = studentDict["linkedin"] as? String  else { continue }
+
             let student = Student(info: bioInfo, studentID: id, linkedinAcc: linkedin, githubAcc: githubAcc, fact: fact)
             if user == nil {
                 studentArr.append(student)
@@ -139,5 +140,38 @@ public var ac32_students: [[String: Any]] = [
         "github": "edwardanchundia",
         "linkedin": "edwardanchundia",
         "funFact": "I am one of four brothers in an Ecuadorian family. I’ve had an interest in coding for sometime now and realized that I work best in a classroom setting with a curriculum which is why I joined Access Code. I am a drummer, photographer, fast driver and many more. I hope to not only meet new people but to also exchange ideas and bring solutions to world issues using technology."
-    ]
+    ],
+    [
+        "info": [
+            "fullName": "Liam Kane",
+            "email": "liamdkane@gmail.com",
+            "imageName": "liam_kane",
+        ],
+        "studentID": 3219,
+        "github": "liamdkane",
+        "linkedin": "liamdkane",
+        "funFact": "I joined access code to learn how my experience as a cook could add to the world. I hope to be able to use what I learn here to become apart of that conversation. I was born in Spain, moved to LA when I was 7, and moved out to New York a couple of years ago to pursue cooking. I think politics are very important and I will not vote for Trump."
+    ],
+    [
+        "info": [
+            "fullName": "Marcel Chaucer",
+            "email":"MChaucer324@gmail.com",
+            "imageName": "marcel_chaucer",
+        ],
+        "studentID": 3222,
+        "github": "Marcel324",
+        "linkedin": "marcelchaucer",
+        "funFact": "I’ve always been interested in tech. I applied to join Access Code because I saw it as an excellent opportunity to take that interest further. I hope to achieve the tools to become a great developer. Two fun facts about me are that I’m big on gaming and I have a passion for  tness."
+    ],
+    [
+        "info": [
+            "fullName": "Victor Zhong",
+            "email":"viczhong@gmail.com",
+            "imageName": "victor_zhong",
+        ],
+        "studentID": 3236,
+        "github": "vic-zhong",
+        "linkedin": "viczhong",
+        "funFact": "Hiya all. I signed up with Access Code because I was always interested in the tech scene but didn’t think a marketing/ analytics skill-set would be too hot at hackathons. I hope that, with the type of guidance I’ve seen during the workshop, I can grow to be a code jockey and wrangle the heck out of apps. Two facts: I’m a Brooklyn native (and will probably stay there forever) and I can lick my elbow."
+    ],
 ]

@@ -17,7 +17,12 @@ class FilterViewController: UIViewController {
 
     @IBOutlet weak var filterLabel: UILabel!
 
-    var condition: String?
+    var condition: String? {
+        didSet {
+            guard let condi = condition else { return }
+            filterLabel.text = "Filter By: " + condi
+        }
+    }
     weak var delegate: FilterStudentDelegate?
 
     override func viewDidLoad() {

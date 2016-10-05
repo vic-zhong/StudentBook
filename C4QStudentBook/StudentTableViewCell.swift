@@ -10,8 +10,6 @@ import UIKit
 
 class StudentTableViewCell: UITableViewCell {
 
-
-
     @IBOutlet weak var pImageView: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!

@@ -20,14 +20,10 @@ class Student {
         linkedin = linkedinAcc
         github = githubAcc
         funFact = fact
-
         if let fullName = info["fullName"] as? String, let imageName = info["imageName"] as? String, let email = info["email"] as? String {
             personalInfo = Biography(fullName: fullName, imageName: imageName, emailString: email)
         } else {
             personalInfo = Biography(fullName: "N/A", imageName: "c4q_logo", emailString: "N/A")
         }
-
     }
-
-
 }
