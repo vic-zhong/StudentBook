@@ -68,16 +68,12 @@
 		D40C35191D9CD6DA00808D67 /* C4QStudentBook */ = {
 			isa = PBXGroup;
 			children = (
+				D42AFE471DAB079D00C393BB /* Storyboard */,
 				D47BDBA71D9ECD8F0084008F /* View */,
 				D40C35301D9CEA1200808D67 /* Model */,
+				D42AFE461DAB076D00C393BB /* Controller */,
 				D40C351A1D9CD6DA00808D67 /* AppDelegate.swift */,
-				D40C352C1D9CDDAB00808D67 /* LogInViewController.swift */,
-				D42FD5B91D9CFD040069FBD6 /* StudentsTableViewController.swift */,
-				D42FD5BB1D9D24B70069FBD6 /* DetailViewController.swift */,
-				D47BDBA51D9ECD730084008F /* FilterViewController.swift */,
-				D40C351E1D9CD6DA00808D67 /* Main.storyboard */,
 				D40C35211D9CD6DA00808D67 /* Assets.xcassets */,
-				D40C35231D9CD6DA00808D67 /* LaunchScreen.storyboard */,
 				D40C35261D9CD6DA00808D67 /* Info.plist */,
 			);
 			path = C4QStudentBook;
@@ -91,6 +87,26 @@
 				D40C35331D9CEB0C00808D67 /* Student.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D42AFE461DAB076D00C393BB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D40C352C1D9CDDAB00808D67 /* LogInViewController.swift */,
+				D42FD5B91D9CFD040069FBD6 /* StudentsTableViewController.swift */,
+				D42FD5BB1D9D24B70069FBD6 /* DetailViewController.swift */,
+				D47BDBA51D9ECD730084008F /* FilterViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		D42AFE471DAB079D00C393BB /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				D40C35231D9CD6DA00808D67 /* LaunchScreen.storyboard */,
+				D40C351E1D9CD6DA00808D67 /* Main.storyboard */,
+			);
+			name = Storyboard;
 			sourceTree = "<group>";
 		};
 		D47BDBA71D9ECD8F0084008F /* View */ = {
