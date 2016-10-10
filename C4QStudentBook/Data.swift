@@ -12,7 +12,7 @@ import UIKit
 class Data {
 
     var students: [Student]
-    let currentUser: Student?
+    var currentUser: Student?
 
     init(studentsDict: [[String: Any]], user: Student?) {
         var studentArr = [Student]()

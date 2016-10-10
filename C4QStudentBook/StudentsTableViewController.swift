@@ -10,8 +10,7 @@ import UIKit
 
 class StudentsTableViewController: UITableViewController, FilterStudentDelegate {
 
-    var currentUser: Student!
-    var data: Data?
+    var data: Data!
 
     @IBOutlet weak var titleImageView: UIImageView!
     
@@ -22,7 +21,6 @@ class StudentsTableViewController: UITableViewController, FilterStudentDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-        data = Data(studentsDict: ac32_students, user: currentUser)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -32,11 +30,11 @@ class StudentsTableViewController: UITableViewController, FilterStudentDelegate 
     }
 
     func filterStudentBy(condition: String) {
-        guard let data = data else { return }
         data.sortStudentsBy(condition: condition, ascending: true)
     }
 
     func setupNavBar() {
+        guard let currentUser = data.currentUser else { return }
         titleImageView.image = UIImage(named: currentUser.personalInfo.profileImageName)
         titleImageView.layer.cornerRadius = 20
         titleImageView.layer.masksToBounds = true
@@ -51,7 +49,7 @@ class StudentsTableViewController: UITableViewController, FilterStudentDelegate 
     func handleTitleViewTap() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        detailVC.student = currentUser
+        detailVC.student = data.currentUser
         present(detailVC, animated: true, completion: nil)
     }
 
@@ -71,25 +69,21 @@ class StudentsTableViewController: UITableViewController, FilterStudentDelegate 
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let students = data?.students else { return 0 }
-        return students.count
+        return data.students.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "studentCellID", for: indexPath) as! StudentTableViewCell
         cell.selectionStyle = .none
-        guard let students = data?.students else { return UITableViewCell() }
-        let studentInfo = students[indexPath.row].personalInfo
+        let studentInfo = data.students[indexPath.row].personalInfo
         cell.studentInfo = studentInfo
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let students = data?.students else { return  }
-        let student = students[indexPath.row]
+        let student = data.students[indexPath.row]
         performSegue(withIdentifier: "detailVCSegueID", sender: student)
     }
-
 
     // MARK: - Prepare for Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

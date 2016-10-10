@@ -15,7 +15,6 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
 
-    var students = [Student]()
     var data: Data?
 
     override func viewDidLoad() {
@@ -33,18 +32,16 @@ class LogInViewController: UIViewController {
     }
 
     func handleLogInButton() {
-        guard let emailEntered = emailTextField.text, let pwEntered = passwordTextField.text else {
-            displayAlertWith(message: "Please enter both email and password field")
-            return
-        }
-        guard let students = data?.students else { return }
-        guard let student = students.filter({ $0.personalInfo.email.lowercased() == emailEntered.lowercased() }).first else {
-            displayAlertWith(message: "Invalid Entry")
+        guard let emailEntered = emailTextField.text, let pwEntered = passwordTextField.text, let currentStudent = data?.students.filter({ $0.personalInfo.email.lowercased() == emailEntered.lowercased() }).first else {
+            displayAlertWith(message: "Invalid Entry email/password")
             return
         }
 
-        if pwEntered == String(student.id) {
-            performSegue(withIdentifier: "studentsListSegueID", sender: student)
+        if pwEntered == String(currentStudent.id) {
+            guard let students = data?.students.filter({ $0.personalInfo.email.lowercased() != currentStudent.personalInfo.email.lowercased() }) else { return }
+            data?.students = students
+            data?.currentUser = currentStudent
+            performSegue(withIdentifier: "studentsListSegueID", sender: data)
         } else {
             displayAlertWith(message: "Invalid password")
         }
@@ -59,9 +56,11 @@ class LogInViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "studentsListSegueID" {
+            guard let studentsData = sender as? Data else { return }
             let navController = segue.destination as! UINavigationController
             let studentsTVC = navController.topViewController as! StudentsTableViewController
-            studentsTVC.currentUser = sender as? Student
+            studentsTVC.data = studentsData
+
         }
     }
 
