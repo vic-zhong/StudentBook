@@ -14,21 +14,14 @@ class Data {
     var students: [Student]
     var currentUser: Student?
 
-    init(studentsDict: [[String: Any]], user: Student?) {
+    init(studentsDict: [[String: Any]]) {
         var studentArr = [Student]()
         for studentDict in studentsDict {
             guard let bioInfo = studentDict["info"] as? [String: Any], let id = studentDict["studentID"] as? Int, let githubAcc = studentDict["github"] as? String, let fact = studentDict["funFact"] as? String, let linkedin = studentDict["linkedin"] as? String  else { continue }
 
             let student = Student(info: bioInfo, studentID: id, linkedinAcc: linkedin, githubAcc: githubAcc, fact: fact)
-            if user == nil {
-                studentArr.append(student)
-            }
-            guard let current = user else { continue }
-            if student.personalInfo.email != current.personalInfo.email {
-                studentArr.append(student)
-            }
+            studentArr.append(student)
         }
-        currentUser = user
         students = studentArr
     }
 

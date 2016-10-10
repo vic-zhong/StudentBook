@@ -22,11 +22,11 @@ class LogInViewController: UIViewController {
         imageView.layer.cornerRadius = 60
         imageView.layer.masksToBounds = true
         logInButton.addTarget(self, action: #selector(handleLogInButton), for: .touchUpInside)
-        data = Data(studentsDict: ac32_students, user: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        data = Data(studentsDict: ac32_students)
         emailTextField.text = nil
         passwordTextField.text = nil
     }

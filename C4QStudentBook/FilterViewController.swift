@@ -12,7 +12,6 @@ protocol FilterStudentDelegate: class {
     func filterStudentBy(condition: String)
 }
 
-
 class FilterViewController: UIViewController {
 
     @IBOutlet weak var filterLabel: UILabel!
